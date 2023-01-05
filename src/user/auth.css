@@ -96,3 +96,17 @@
     letter-spacing: 1.3px;
     box-shadow: 0 2px 4px #777;
   }
+
+  .home-img{
+    margin-top: 25%;
+  }
+
+  .logout{
+    padding: 15px;
+    width: 25%;
+    background-color: bisque;
+    color: brown;
+    font-size: 20px;
+    text-decoration:none;
+    text-transform: uppercase;
+  }

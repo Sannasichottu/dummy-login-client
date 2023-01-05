@@ -12,7 +12,7 @@ function ForgotPassword() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:3001/user/send-otp`,{
+        axios.post(`http://localhost:5000/user/send-otp`,{
             email:email,
         }).then(res => {
             console.log(res.data);

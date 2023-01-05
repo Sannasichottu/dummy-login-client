@@ -1,19 +1,18 @@
 import React,{useState} from 'react';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 import './auth.css';
 
-import { useNavigate } from 'react-router-dom';
 //import { Link } from 'react-router-dom';
 
 const NewSubmit = () => {
-
     const navigate = useNavigate()
     const [otp, setOtp] = useState('')
     const [password, setPassword] = useState('')
 
     const handleSubmit = () => {
         console.log(otp, password)
-        axios.post('http://localhost:3001/user/submit-otp',
+        axios.post('http://localhost:5000/user/submit-otp',
             {
                 otp: otp,
                 password: password,
@@ -23,7 +22,7 @@ const NewSubmit = () => {
                 if (res.data.code === 200) {
                     navigate('/login')
                     alert('Password Updated.')
-                } else {
+                }else {
                     alert('server err / wrong OTP')
                 }
             }).catch(err => {
@@ -52,6 +51,7 @@ const NewSubmit = () => {
             </div>
             <div className="row-1">
                     <button type="submit">CHANGE PASSWORD</button>
+                    <Link to='/login'>Login</Link>
             </div>
         </form>
 

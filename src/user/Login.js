@@ -1,23 +1,24 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './auth.css'
 
 const Login = () => {
 
 
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password,setPassword] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:3001/user/login`,{
+        axios.post(`http://localhost:5000/user/login`,{
             email:email,
             password:password
         }).then((res) => {
             console.log(res.data);
             alert("user login successfull")
+            navigate('/home')
         }).catch((err) =>{
             console.log(err);
             alert("Please Enter correct Password");

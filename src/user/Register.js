@@ -4,25 +4,23 @@ import { Link, useNavigate } from 'react-router-dom'
 import './auth.css'
 
 const Register = () => {
-    const navigate =useNavigate('');
+    const navigate =useNavigate();
     const [name,setName] = useState('');
     const [number,setNumber] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
-    const [confirmpassword,setConfirmpassword] = useState('');
 
     const handleSubmit = async (e) =>{
-      await e.preventDefault();
-        axios.post('http://localhost:3001/user/register',{
+       e.preventDefault();
+       await axios.post('http://localhost:5000/user/register',{
             name:name,
             number:number,
             email:email,
-            password:password,
-            confirmpassword:confirmpassword
+            password:password
         }).then((res) =>{
             console.log(res.data)
             if(res.status === 200) {
-              alert("Register successfully check your mail for verfication Number")
+              alert("User Created")
               navigate('/login')
             }
           })
@@ -78,11 +76,7 @@ const Register = () => {
                      name="password" value={password} onChange={(e) =>setPassword(e.target.value)} />
                 </div>
 
-                <div>
-                    <label htmlFor="confirmpassword">Confirm Password</label>
-                    <input type="password" placeholder="Confirm password" id="cf_password"
-                     name="confirmpassword" value={confirmpassword} onChange={(e) =>setConfirmpassword(e.target.value)} />
-                </div>
+
 
                 <div className="row">
                     <button type="submit">Register</button>
