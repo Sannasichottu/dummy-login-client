@@ -1,31 +1,31 @@
 import axios  from 'axios';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './auth.css'
 
 const Register = () => {
-
+    const navigate =useNavigate('');
     const [name,setName] = useState('');
     const [number,setNumber] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [confirmpassword,setConfirmpassword] = useState('');
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
+    const handleSubmit = async (e) =>{
+      await e.preventDefault();
         axios.post('http://localhost:3001/user/register',{
             name:name,
             number:number,
             email:email,
             password:password,
             confirmpassword:confirmpassword
-        }).then(() => alert("User Created"))
-        .catch(err => console.log(err))
-        setName("");
-        setNumber("");
-        setEmail("");
-        setPassword("");
-        setConfirmpassword("")
+        }).then((res) =>{
+            console.log(res.data)
+            if(res.status === 200) {
+              alert("Register successfully check your mail for verfication Number")
+              navigate('/login')
+            }
+          })
     }
 
     /*const handleSubmit = () => {
